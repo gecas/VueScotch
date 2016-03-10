@@ -75,6 +75,10 @@ new Vue({
 		    }
 		  },
 
+		   editEvent: function(event) {
+		  console.log(event.id);
+		},
+
 		  deleteEvent: function(event) {
 		  if(confirm("Are you sure you want to delete this event?")) {
 		    // $remove is a Vue convenience method similar to splice

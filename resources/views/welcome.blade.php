@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
       <meta id="token" name="token" value="{{csrf_token()}}">
     </head>
-    
+
     <body>
         
         <!-- navigation bar -->
@@ -69,7 +69,9 @@
             <p class="list-group-item-text" v-if="event.description">@{{ event.description }}</p>
 
             <button class="btn btn-xs btn-danger" @click="deleteEvent(event)">Delete</button>
+            <button class="btn btn-warning btn-xs" @click="editEvent(event)">Edit</button>
           </a>
+
 
         </div>
       </div>
