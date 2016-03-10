@@ -30,5 +30,6 @@ Route::group(['middleware' => ['web']], function () {
 		});
 
 	    Route::get('api/events', 'EventsController@events');
+	    Route::post('api/events', 'EventsController@postEvents');
 
 });

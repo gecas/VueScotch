@@ -1,3 +1,5 @@
+Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
+
 new Vue({
 
 	el:'#events',
@@ -52,6 +54,17 @@ new Vue({
 					    // $set is a convenience method provided by Vue that is similar to pushing
 		    // data onto an array
 		    //this.$set('events', events);
+		  },
+
+		  //Post Event to DB
+		  postEvent: function() {
+		     this.$http.post('api/events', this.event).then(function (events) {
+		     	  this.events.unshift(this.event);
+		     	  this.event = { name: '', description: '', date: '' };
+		          //this.$set('events', events.data);
+		      }, function (response) {
+		          console.log(error);
+		      });
 		  },
 
 	   // Adds an event to the existing events array

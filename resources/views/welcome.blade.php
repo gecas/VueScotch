@@ -3,8 +3,9 @@
     <head>
         <title>Laravel</title>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-      
+      <meta id="token" name="token" value="{{csrf_token()}}">
     </head>
+    
     <body>
         
         <!-- navigation bar -->
@@ -30,18 +31,18 @@
         <div class="panel-body">
 
           <div class="form-group">
-            <input class="form-control" placeholder="Event Name" v-model="event.name">
+            <input class="form-control" placeholder="Event Name" name="name" v-model="event.name">
           </div>
 
           <div class="form-group">
-            <textarea class="form-control" placeholder="Event Description" v-model="event.description"></textarea>
+            <textarea class="form-control" placeholder="Event Description" name="description" v-model="event.description"></textarea>
           </div>
 
           <div class="form-group">
-            <input type="date" class="form-control" placeholder="Date" v-model="event.date">
+            <input type="date" class="form-control" placeholder="Date" name="date" v-model="event.date">
           </div>
 
-          <button class="btn btn-primary" @click="addEvent">Submit</button>
+          <button class="btn btn-primary" @click="postEvent">Submit</button>
 
         </div>
         </div>
