@@ -68,21 +68,39 @@ new Vue({
 		  },
 
 	   // Adds an event to the existing events array
-		  addEvent: function() {
-		    if(this.event.name) {
-		      this.events.push(this.event);
-		      this.event = { name: '', description: '', date: '' };
-		    }
-		  },
+		  // addEvent: function() {
+		  //   if(this.event.name) {
+		  //     this.events.push(this.event);
+		  //     this.event = { name: '', description: '', date: '' };
+		  //   }
+		  // },
 
 		   editEvent: function(event) {
-		  console.log(event.id);
+		  this.event = {id: event.id, name: event.name, description: event.description, method:'update', date: new Date(event.date).toLocaleDateString() };
 		},
+
+		updateEvent: function(event) {
+			this.$http.put('api/events/'+event.id, this.event).then(function (events) {
+		     	  this.events.unshift(this.event);
+		     	  //this.events.$remove(this.event);
+		     	  this.event = { name: '', description: '', date: '' };
+		     	  this.$set('events', events.data);
+		      }, function (response) {
+		          console.log(error);
+		      });
+		},
+
 
 		  deleteEvent: function(event) {
 		  if(confirm("Are you sure you want to delete this event?")) {
 		    // $remove is a Vue convenience method similar to splice
-		    this.events.$remove(event);        
+		    
+		    this.$http.delete('api/events/'+event.id, this.event).then(function (events) {
+		          this.$set('events', events.data);
+		      }, function (response) {
+		          console.log(error);
+		      });
+
 		  }
 		}
 

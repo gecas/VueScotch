@@ -25,11 +25,22 @@ use App\Event;
 */
 
 Route::group(['middleware' => ['web']], function () {
+	    //auth()->logInUsingId(1);
 		Route::get('/', function(){
 			return view('welcome');
 		});
 
+		Route::get('/vuejs', function(){
+			return view('vuejs');
+		});
+
+		Route::get('/swapping', function(){
+			return view('pages.swapping');
+		});
+
 	    Route::get('api/events', 'EventsController@events');
 	    Route::post('api/events', 'EventsController@postEvents');
+	    Route::put('api/events/{id}', 'EventsController@update');
+	    Route::delete('api/events/{id}', 'EventsController@destroy');
 
 });

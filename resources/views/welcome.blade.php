@@ -42,7 +42,12 @@
             <input type="date" class="form-control" placeholder="Date" name="date" v-model="event.date">
           </div>
 
-          <button class="btn btn-primary" @click="postEvent">Submit</button>
+          <button 
+          v-if="event.method == 'update'"
+          class="btn btn-primary" 
+          @click="updateEvent(event)">Update</button>
+
+          <button v-else class="btn btn-primary" @click="postEvent">Submit</button>
 
         </div>
         </div>
